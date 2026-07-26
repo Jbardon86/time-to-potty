@@ -98,3 +98,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   wireSignupForm('footerSignupForm', 'footerSignupNote');
 });
+
+
+// Interactive "press to preview" demo button on the product photo.
+// Plays a short synthesized jingle (not the actual product audio) with the Web Audio API.
+document.addEventListener('DOMContentLoaded', () => {
+  const pressBtn = document.getElementById('press-demo-btn');
+  if (!pressBtn) return;
+  let audioCtx;
+  function playPreviewJingle() {
+    const Ctx = window.AudioContext || window.webkitAudioContext;
+    if (!Ctx) return;
+    audioCtx = audioCtx || new Ctx();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const now = audioCtx.currentTime;
+    const notes = [523.25, 659.25, 783.99, 1046.5];
+    const noteDur = 0.18;
+    notes.forEach((freq, i) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      const start = now + i * noteDur;
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.linearRampToValueAtTime(0.25, start + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + noteDur);
+      osc.connect(gain).connect(audioCtx.destination);
+      osc.start(start);
+      osc.stop(start + noteDur + 0.03);
+    });
+  }
+  function triggerPress() {
+    pressBtn.classList.add('is-pressed');
+    setTimeout(() => pressBtn.classList.remove('is-pressed'), 160);
+    playPreviewJingle();
+  }
+  pressBtn.addEventListener('click', triggerPress);
+});
