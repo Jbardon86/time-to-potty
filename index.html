@@ -3,464 +3,408 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Time To Potty | Make Potty Time Fun!</title>
-<meta name="description" content="Time To Potty is a fun potty timer button with sounds, lights, and countdowns that turns potty training into a game kids love.">
-<meta name="theme-color" content="#1857a4">
-<meta property="og:title" content="Time To Potty | Make Potty Time Fun!">
-<meta property="og:description" content="The fun potty timer button with lights, sounds, and countdowns kids actually love pressing.">
-<meta property="og:image" content="logo-badge.png">
+<title>Time to Potty Music Button | Make Potty Time Fun</title>
+<meta name="description" content="Make bathroom routines more fun with the Time to Potty music button. One press plays a short, upbeat song that helps children build a simple potty-time routine.">
+<meta name="theme-color" content="#07559B">
+<meta property="og:title" content="Time to Potty Music Button | Make Potty Time Fun">
+<meta property="og:description" content="One press plays a short, upbeat song that helps children build a simple potty-time routine. No app, no Wi-Fi, no charging required.">
+<meta property="og:image" content="time-to-potty-hero.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" href="logo-badge.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
-
-  :root{
-    --blue:#1857a4;
-    --blue-dark:#123f7a;
-    --yellow:#ffd400;
-    --red:#e8332a;
-    --cream:#fff8e6;
-    --white:#ffffff;
-    --ink:#2b2b2b;
-    --muted:#6b7280;
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="data.js" defer></script>
+<script src="script.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Time to Potty Music Button",
+  "image": "time-to-potty-product-front.jpg",
+  "description": "A battery-powered music button that plays 30–60 seconds of upbeat music to help children build a simple, positive potty-time routine.",
+  "brand": { "@type": "Brand", "name": "Time to Potty" },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "USD",
+    "price": "24.99",
+    "availability": "https://schema.org/PreOrder"
   }
-  *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
-  body{font-family:'Nunito', sans-serif;color:var(--ink);background:var(--white);line-height:1.6;}
-  h1,h2,h3{font-family:'Baloo 2', cursive;line-height:1.2;}
-  img{max-width:100%;display:block;}
-  a{text-decoration:none;}
-  ul{list-style:none;}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
-  section{padding:90px 0;}
-  .btn{display:inline-block;background:var(--red);color:var(--white);font-family:'Baloo 2', cursive;font-weight:700;font-size:1.02rem;padding:15px 32px;border-radius:50px;border:none;cursor:pointer;box-shadow:0 4px 14px rgba(232,51,42,.35);transition:transform .15s ease, box-shadow .15s ease;}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(232,51,42,.4);}
-  .btn.secondary{background:var(--white);color:var(--blue);box-shadow:0 4px 14px rgba(0,0,0,.08);border:2px solid var(--blue);}
-  .btn.secondary:hover{background:var(--blue);color:var(--white);}
-  .icon-circle{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
-  .icon-circle svg{width:24px;height:24px;}
-
-  /* ANNOUNCEMENT BAR */
-  .announce{background:var(--blue-dark);color:var(--white);text-align:center;font-weight:700;font-size:.85rem;padding:10px 16px;}
-  .announce span{color:var(--yellow);}
-
-  /* NAV */
-  header.site{background:var(--white);padding:14px 0;position:sticky;top:0;z-index:50;box-shadow:0 2px 12px rgba(20,40,80,.08);}
-  header.site .wrap{display:flex;align-items:center;justify-content:space-between;}
-  .logo{display:flex;align-items:center;gap:10px;}
-  .logo img{width:42px;height:42px;border-radius:50%;}
-  .logo span{color:var(--blue);font-family:'Baloo 2';font-weight:800;font-size:1.2rem;letter-spacing:.3px;}
-  nav.desktop-nav ul{display:flex;gap:30px;}
-  nav.desktop-nav a{color:var(--ink);font-weight:700;font-size:.93rem;padding-bottom:4px;border-bottom:2px solid transparent;transition:border-color .15s ease,color .15s ease;}
-  nav.desktop-nav a:hover{color:var(--blue);border-color:var(--yellow);}
-  .nav-cta{display:flex;align-items:center;gap:16px;}
-  .nav-cta .btn{padding:10px 22px;font-size:.88rem;}
-  .menu-toggle{display:none;background:none;border:none;cursor:pointer;width:40px;height:40px;flex-direction:column;justify-content:center;align-items:center;gap:5px;}
-  .menu-toggle span{width:24px;height:3px;background:var(--blue-dark);border-radius:2px;}
-  .mobile-nav{display:none;flex-direction:column;background:var(--white);border-top:1px solid #eee;}
-  .mobile-nav.open{display:flex;}
-  .mobile-nav a{padding:14px 24px;font-weight:700;color:var(--ink);border-bottom:1px solid #f2f2f2;}
-
-  /* HERO SPLIT */
-  .hero{background:linear-gradient(180deg,#f4f8ff 0%, #eef4ff 100%);padding:90px 0;position:relative;overflow:hidden;}
-  .hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;}
-  .hero .eyebrow{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #dbe6fb;padding:7px 16px;border-radius:30px;font-weight:800;font-size:.78rem;letter-spacing:.6px;color:var(--blue);margin-bottom:22px;text-transform:uppercase;box-shadow:0 2px 8px rgba(20,40,80,.06);}
-  .hero h1{font-size:3rem;color:var(--blue-dark);margin-bottom:18px;}
-  .hero h1 span{color:var(--red);}
-  .hero p.tag{font-size:1.15rem;margin:0 0 30px;max-width:480px;font-weight:600;color:var(--muted);}
-  .waitlist-form{display:flex;gap:10px;max-width:440px;flex-wrap:wrap;}
-  .waitlist-form input{flex:1;min-width:200px;padding:15px 18px;border-radius:50px;border:2px solid #dbe6fb;font-family:'Nunito';font-size:.95rem;outline:none;}
-  .waitlist-form input:focus{border-color:var(--blue);}
-  .form-note{margin-top:14px;font-weight:700;color:var(--blue-dark);background:#e7f0ff;padding:12px 18px;border-radius:12px;display:none;max-width:440px;}
-  .form-sub{margin-top:12px;font-size:.82rem;color:var(--muted);font-weight:600;}
-  .hero-visual{position:relative;display:flex;justify-content:center;align-items:center;}
-  .blob{position:absolute;border-radius:50%;filter:blur(0px);z-index:0;}
-  .blob-1{width:340px;height:340px;background:#ffe58a;top:-30px;right:-20px;opacity:.6;}
-  .blob-2{width:220px;height:220px;background:#c9ddff;bottom:-30px;left:-10px;opacity:.7;}
-  .device-mock{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;}
-  .device-btn{width:210px;height:210px;border-radius:50%;overflow:hidden;border:8px solid #ffd400;box-shadow:0 12px 0 #d99f00, 0 26px 40px rgba(18,63,122,.3);position:relative;z-index:2;}
-  .device-btn img{width:100%;height:100%;object-fit:cover;display:block;}
-  .device-btn::after{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(160deg, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 40%, rgba(0,0,0,.12) 100%);}
-  .device-base{width:172px;height:56px;background:linear-gradient(180deg,#3c3c3c 0%, #141414 100%);border-radius:0 0 20px 20px;margin-top:-22px;box-shadow:0 16px 26px rgba(18,63,122,.25);position:relative;z-index:1;}
-  .device-vents{position:absolute;top:16px;left:50%;transform:translateX(-50%);width:64px;height:14px;background-image:radial-gradient(circle,#000 1.4px,transparent 1.4px);background-size:7px 7px;opacity:.55;}
-
-  /* TRUST STRIP */
-  .trust-strip{background:var(--white);padding:44px 0;border-bottom:1px solid #f0f0f0;}
-  .trust-strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
-  .trust-item{display:flex;align-items:center;gap:12px;justify-content:center;font-weight:700;color:var(--blue-dark);font-size:.92rem;}
-  .trust-item svg{width:26px;height:26px;stroke:var(--blue);flex:none;}
-
-  /* SECTION HEADERS */
-  .eyebrow-sm{display:block;text-align:center;color:var(--red);font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:.8rem;margin-bottom:10px;}
-  .section-title{text-align:center;font-size:2.1rem;color:var(--blue-dark);margin-bottom:14px;}
-  .section-sub{text-align:center;max-width:560px;margin:0 auto 54px;font-weight:600;color:var(--muted);}
-
-  /* HOW IT WORKS */
-  .how{background:var(--cream);}
-  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
-  .step{background:var(--white);border-radius:18px;padding:32px 22px;text-align:center;position:relative;box-shadow:0 4px 16px rgba(20,40,80,.05);transition:transform .15s ease, box-shadow .15s ease;}
-  .step:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(20,40,80,.1);}
-  .step .num{position:absolute;top:16px;right:16px;width:26px;height:26px;border-radius:50%;background:var(--blue-dark);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.75rem;font-family:'Baloo 2';}
-  .step .icon-circle{background:var(--cream);}
-  .step .icon-circle svg{stroke:var(--blue);}
-  .step h3{font-size:1.02rem;margin-bottom:8px;color:var(--blue-dark);}
-  .step p{font-size:.88rem;color:var(--muted);}
-
-  /* FEATURE SPOTLIGHT SPLIT */
-  .spotlight{background:var(--white);}
-  .spotlight .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:center;}
-  .spotlight-visual{display:flex;justify-content:center;}
-  .spotlight-list{display:flex;flex-direction:column;gap:22px;margin-top:26px;}
-  .spotlight-list li{display:flex;gap:16px;align-items:flex-start;}
-  .spotlight-list .icon-circle{margin:0;flex:none;background:var(--cream);}
-  .spotlight-list .icon-circle svg{stroke:var(--red);}
-  .spotlight-list h4{font-size:1.02rem;color:var(--blue-dark);margin-bottom:4px;}
-  .spotlight-list p{font-size:.9rem;color:var(--muted);}
-
-  /* WHY PARENTS LOVE IT */
-  .why{background:var(--blue-dark);color:var(--white);}
-  .why .section-title{color:var(--white);}
-  .why .section-sub{color:#a9c1e8;}
-  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:920px;margin:0 auto;}
-  .why-item{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:22px;display:flex;gap:14px;align-items:flex-start;transition:background .15s ease;}
-  .why-item:hover{background:rgba(255,255,255,.1);}
-  .why-item .check{background:var(--yellow);color:var(--blue-dark);border-radius:50%;width:26px;height:26px;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.8rem;}
-  .why-item p{font-weight:700;font-size:.93rem;}
-
-  /* FAQ */
-  .faq{background:var(--cream);}
-  .faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
-  .faq-item{background:var(--white);border-radius:14px;padding:6px 22px;box-shadow:0 3px 12px rgba(20,40,80,.05);}
-  .faq-item summary{cursor:pointer;font-weight:800;color:var(--blue-dark);padding:16px 0;list-style:none;display:flex;justify-content:space-between;align-items:center;font-size:1rem;}
-  .faq-item summary::-webkit-details-marker{display:none;}
-  .faq-item summary:after{content:'+';font-size:1.4rem;color:var(--blue);}
-  .faq-item[open] summary:after{content:'\2212';}
-  .faq-item p{padding-bottom:18px;color:var(--muted);font-size:.92rem;}
-
-  /* CTA BANNER */
-  .cta-banner{background:linear-gradient(135deg, var(--yellow) 0%, #ffc700 100%);text-align:center;}
-  .cta-banner h2{font-size:2rem;color:var(--blue-dark);margin-bottom:12px;}
-  .cta-banner p{font-weight:700;margin-bottom:28px;color:#5a4b00;}
-  .cta-banner .waitlist-form{margin:0 auto;justify-content:center;}
-  .cta-banner .form-note{margin:14px auto 0;}
-
-  /* FOOTER */
-  footer{background:#0d2c58;color:#cfe0ff;padding:60px 0 26px;}
-  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px;}
-  .footer-brand{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-  .footer-brand img{width:38px;height:38px;border-radius:50%;}
-  .footer-brand span{font-family:'Baloo 2';font-weight:800;color:var(--white);font-size:1.08rem;}
-  .footer-col h4{color:var(--white);font-size:.9rem;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px;}
-  .footer-col ul{display:flex;flex-direction:column;gap:10px;}
-  .footer-col a{color:#a9c1e8;font-size:.9rem;font-weight:600;}
-  .footer-col a:hover{color:var(--yellow);}
-  .footer-badges{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
-  .footer-badges span{background:rgba(255,255,255,.07);padding:7px 14px;border-radius:30px;font-size:.78rem;font-weight:700;}
-  .social{display:flex;gap:12px;margin-top:16px;}
-  .social a{color:var(--white);background:rgba(255,255,255,.08);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .15s ease;}
-  .social a:hover{background:var(--yellow);color:var(--blue-dark);}
-  .social svg{width:17px;height:17px;}
-  .footer-bottom{text-align:center;font-size:.8rem;color:#7c99c9;border-top:1px solid rgba(255,255,255,.08);padding-top:22px;}
-
-  @media (max-width:980px){
-    .hero .wrap{grid-template-columns:1fr;text-align:center;}
-    .hero p.tag{margin:0 auto 30px;}
-    .waitlist-form{justify-content:center;margin:0 auto;}
-    .hero-visual{margin-top:20px;}
-    .spotlight .wrap{grid-template-columns:1fr;}
-    .spotlight-visual{order:-1;}
-    .trust-strip .wrap{grid-template-columns:repeat(2,1fr);}
-    .steps{grid-template-columns:repeat(2,1fr);}
-    .why-grid{grid-template-columns:1fr 1fr;}
-    .footer-grid{grid-template-columns:1fr;}
-    section{padding:64px 0;}
-  }
-  @media (max-width:680px){
-    nav.desktop-nav{display:none;}
-    .nav-cta .btn{display:none;}
-    .menu-toggle{display:flex;}
-    .hero h1{font-size:2.2rem;}
-    .steps{grid-template-columns:1fr;}
-    .why-grid{grid-template-columns:1fr;}
-    .waitlist-form{flex-direction:column;}
-  }
-
-</style>
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is Time to Potty?","acceptedAnswer":{"@type":"Answer","text":"Time to Potty is a simple music button that plays a short song to make bathroom routines more fun and predictable for children."}},
+    {"@type":"Question","name":"How long does the music play?","acceptedAnswer":{"@type":"Answer","text":"The music plays for approximately 30–60 seconds, depending on the final product version."}},
+    {"@type":"Question","name":"What ages is it designed for?","acceptedAnswer":{"@type":"Answer","text":"It is primarily designed for toddlers and young children who are learning bathroom routines."}},
+    {"@type":"Question","name":"Does it require an app?","acceptedAnswer":{"@type":"Answer","text":"No. It works without an app, phone, Wi-Fi, or Bluetooth."}},
+    {"@type":"Question","name":"Where does it go?","acceptedAnswer":{"@type":"Answer","text":"It is designed to sit on the toilet tank or another nearby clean, dry, stable surface."}},
+    {"@type":"Question","name":"Is it waterproof?","acceptedAnswer":{"@type":"Answer","text":"Time to Potty is not waterproof. Keep it away from water and clean it according to the product instructions."}},
+    {"@type":"Question","name":"Does it guarantee potty-training success?","acceptedAnswer":{"@type":"Answer","text":"No. It is a routine-support product designed to make potty time more engaging. Every child develops at a different pace."}},
+    {"@type":"Question","name":"Are batteries included?","acceptedAnswer":{"@type":"Answer","text":"Battery requirements and included contents are being finalized and will be confirmed before launch."}}
+  ]
+}
+</script>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<div class="announce">🚀 <span>Launching soon</span> — join the waitlist for early access &amp; a launch-day surprise</div>
+<div class="announce">Make potty time more fun. <span class="sep">|</span> Fast shipping <span class="sep">|</span> Easy to use <span class="sep">|</span> No app required</div>
 
 <header class="site">
   <div class="wrap">
-    <div class="logo">
-      <img src="logo-badge.png" alt="Time To Potty logo">
-      <span>TIME TO POTTY</span>
-    </div>
-    <nav class="desktop-nav">
+    <a href="#top" class="logo"><img src="logo-badge.png" alt="Time to Potty logo"> TIME TO POTTY</a>
+    <nav class="desktop-nav" aria-label="Primary">
       <ul>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#spotlight">Features</a></li>
-        <li><a href="#why">Why Parents Love It</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#why-parents-love-it">Why Parents Love It</a></li>
+        <li><a href="#reviews">Reviews</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
     </nav>
-    <div class="nav-cta">
-      <a href="#waitlist" class="btn secondary">Join Waitlist</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
+    <div class="header-actions">
+      <button class="cart-btn" aria-label="View cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#07559B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+        <span class="cart-count">0</span>
       </button>
+      <a href="#purchase" id="cta-shop-header" class="btn" style="padding:10px 22px;font-size:.88rem;">Shop Now</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
-  <nav class="mobile-nav" id="mobileNav">
-    <a href="#how">How It Works</a>
-    <a href="#spotlight">Features</a>
-    <a href="#why">Why Parents Love It</a>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+    <a href="#how-it-works">How It Works</a>
+    <a href="#why-parents-love-it">Why Parents Love It</a>
+    <a href="#reviews">Reviews</a>
     <a href="#faq">FAQ</a>
-    <a href="#waitlist">Join Waitlist</a>
+    <a href="#purchase">Shop Now</a>
   </nav>
 </header>
 
-<section class="hero" id="waitlist">
+<main id="main">
+<div id="top"></div>
+
+<section class="hero" aria-label="Introduction">
   <div class="wrap">
-    <div class="hero-content">
-      <span class="eyebrow">Potty Training, Reimagined</span>
-      <h1>Potty time your toddler will actually <span>ask for</span>.</h1>
-      <p class="tag">Time To Potty is a fun timer button with cheerful sounds, lights, and countdowns that turns bathroom routines into a game kids love.</p>
-      <form class="waitlist-form" id="waitlistForm">
-        <input type="email" placeholder="Enter your email" required>
-        <button type="submit" class="btn">Join the Waitlist</button>
-      </form>
-      <p class="form-note" id="formNote">🎉 You're on the list! We'll email you the moment we launch.</p>
-      <p class="form-sub">Be the first to know when we launch. No spam, ever.</p>
+    <div>
+      <p class="lede">The potty timer kids actually want to use.</p>
+      <h1>Make Potty Time Fun</h1>
+      <p class="support"><strong>A 30–60 second music button that helps children build a simple, positive bathroom routine.</strong> Press the button, enjoy the song, finish up, wash hands, and get back to the fun.</p>
+      <div class="hero-ctas">
+        <a href="#purchase" id="cta-shop-hero" class="btn">Shop Time to Potty</a>
+        <a href="#how-it-works" id="cta-how-it-works-hero" class="btn secondary">See How It Works</a>
+      </div>
+      <div class="trust-row">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3v4M8 3v4M2 11h20"/></svg>No app required</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>Kid-friendly design</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 6h4"/></svg>Battery powered</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>Simple one-button use</span>
+      </div>
     </div>
-    <div class="hero-visual">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-      <div class="device-mock">
-        <div class="device-btn"><img src="logo-badge.png" alt="Time To Potty push-button toy"></div>
-        <div class="device-base"><div class="device-vents"></div></div>
+    <div class="hero-image">
+      <img src="time-to-potty-hero.jpg" alt="Time to Potty music button sitting on the tank of a clean, modern white toilet in a bright bathroom" loading="lazy" width="1200" height="1200">
+    </div>
+  </div>
+</section>
+
+<section class="problem" aria-label="The problem and our solution">
+  <div class="wrap">
+    <span class="section-label">Why Time to Potty</span>
+    <h2 class="section-title">Potty Time Shouldn’t Take Forever</h2>
+    <p class="section-sub">Some children rush through potty time. Others turn it into a 20-minute event. Time to Potty gives children a fun, predictable routine they can understand.</p>
+    <div class="compare">
+      <div class="compare-card before">
+        <h3>Before</h3>
+        <ul>
+          <li>Repeated reminders</li>
+          <li>Long bathroom visits</li>
+          <li>Potty-time resistance</li>
+          <li>Frustrated parents</li>
+        </ul>
+      </div>
+      <div class="compare-card after">
+        <h3>After</h3>
+        <ul>
+          <li>Press the button</li>
+          <li>Music begins</li>
+          <li>Finish potty time</li>
+          <li>Wash hands</li>
+          <li>Get back to playing</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<section class="trust-strip">
+<section class="how" id="how-it-works" aria-label="How it works">
   <div class="wrap">
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z"/><path d="m9 12 2 2 4-4"/></svg>
-      Kid-Safe Materials
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>
-      Designed With Parents
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M6 11h12v5a6 6 0 0 1-12 0v-5Z"/></svg>
-      One-Button Simplicity
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><path d="m9 9 2 2 4-4" stroke="none"/><path d="M7 9h2M7 12h6" /></svg>
-      Screen-Free Fun
-    </div>
-  </div>
-</section>
-
-<section class="how" id="how">
-  <div class="wrap">
-    <span class="eyebrow-sm">Simple &amp; Effective</span>
-    <h2 class="section-title">How It Works</h2>
-    <p class="section-sub">Four simple steps turn potty time into a game.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="num">1</div>
-        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M6 11h12v5a6 6 0 0 1-12 0v-5Z"/></svg></div>
-        <h3>Press the Button</h3>
-        <p>Kids press the big friendly button themselves.</p>
+    <span class="section-label">Simple by Design</span>
+    <h2 class="section-title">Press. Potty. Done.</h2>
+    <p class="section-sub">Three simple steps children can learn and follow on their own.</p>
+    <div class="steps3">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <h3>Press</h3>
+        <p>Place the button on the toilet tank and press it when potty time begins.</p>
       </div>
-      <div class="step">
-        <div class="num">2</div>
-        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg></div>
-        <h3>Timer Starts</h3>
-        <p>A countdown begins so they know just how long to sit.</p>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3>Potty</h3>
+        <p>A fun 30–60 second song creates an easy routine children can follow.</p>
       </div>
-      <div class="step">
-        <div class="num">3</div>
-        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div>
-        <h3>Fun Sounds &amp; Lights</h3>
-        <p>Cheerful sounds and lights keep them entertained.</p>
-      </div>
-      <div class="step">
-        <div class="num">4</div>
-        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 9.5 8.5 3 9l5 4.5L6.5 21 12 17l5.5 4-1.5-7.5L21 9l-6.5-.5Z"/></svg></div>
-        <h3>Time's Up, Great Job!</h3>
-        <p>A celebration sound rewards a job well done.</p>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12v-1a5 5 0 0 1 10 0v1"/><path d="M5 12h14l-1.2 7.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8Z"/></svg></div>
+        <h3>Wash and Go</h3>
+        <p>When the song ends, finish up, wash hands, and get back to the day.</p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="spotlight" id="spotlight">
+<section class="benefits" id="why-parents-love-it" aria-label="Benefits">
   <div class="wrap">
-    <div class="spotlight-visual">
-      <div class="device-mock">
-        <div class="device-btn"><img src="logo-badge.png" alt="Time To Potty push-button toy, top view"></div>
-        <div class="device-base"><div class="device-vents"></div></div>
+    <span class="section-label">The Payoff</span>
+    <h2 class="section-title">A Better Potty Routine for Kids and Parents</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <h3>Makes Potty Time Fun</h3>
+        <p>Upbeat music helps make bathroom visits feel positive instead of stressful.</p>
       </div>
+      <div class="benefit-card">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg></div>
+        <h3>Creates a Predictable Routine</h3>
+        <p>Children learn the same simple steps every time they use the bathroom.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></div>
+        <h3>Encourages Independence</h3>
+        <p>The large button is easy for children to press themselves.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg></div>
+        <h3>Helps Prevent Long Bathroom Visits</h3>
+        <p>The short song gives children a clear sense of how long potty time should take.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/><line x1="6" y1="9" x2="6" y2="9.01"/></svg></div>
+        <h3>No App or Screen Needed</h3>
+        <p>No phone, Bluetooth, Wi-Fi, or complicated setup.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h3>Easy for Parents</h3>
+        <p>Place it on the toilet tank, switch it on, and it is ready to use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lifestyle" aria-label="Bring Time to Potty home">
+  <div class="lifestyle-media">
+    <img src="time-to-potty-bathroom-lifestyle.jpg" alt="Time to Potty music button placed on a toilet tank in a bright, styled family bathroom" loading="lazy" width="1200" height="900">
+    <div class="lifestyle-overlay">
+      <h2>Turn Potty Time Into a Routine They’ll Remember</h2>
+      <p>Children respond well to repetition, music, and simple cues. Time to Potty combines all three in one easy-to-use button.</p>
+      <a href="#purchase" id="cta-shop-lifestyle" class="btn yellow">Shop Now</a>
+    </div>
+  </div>
+</section>
+
+<section class="feature-spec" aria-label="Product features and dimensions">
+  <div class="wrap">
+    <div class="feature-visual">
+      <img src="time-to-potty-closeup.jpg" alt="Close-up of the Time to Potty music button showing the yellow top, printed artwork, and black base" loading="lazy" width="900" height="900">
     </div>
     <div>
-      <span class="eyebrow-sm" style="text-align:left">The Experience</span>
-      <h2 class="section-title" style="text-align:left">Everything Your Toddler Needs to Succeed</h2>
-      <p class="section-sub" style="text-align:left;margin:0 0 10px;">Thoughtfully designed details that make potty training click.</p>
-      <ul class="spotlight-list">
-        <li>
-          <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M9 2h6"/></svg></div>
-          <div><h4>Adjustable Countdown Timer</h4><p>Set the right amount of time for your child's routine.</p></div>
-        </li>
-        <li>
-          <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></svg></div>
-          <div><h4>Cheerful Sound Effects</h4><p>Playful audio cues make sitting down something to look forward to.</p></div>
-        </li>
-        <li>
-          <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11V6a3 3 0 0 1 6 0v5"/><path d="M6 11h12v5a6 6 0 0 1-12 0v-5Z"/></svg></div>
-          <div><h4>One-Button Simplicity</h4><p>No apps, no setup — just press and go.</p></div>
-        </li>
-        <li>
-          <div class="icon-circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z"/><path d="m9 12 2 2 4-4"/></svg></div>
-          <div><h4>Durable, Kid-Proof Design</h4><p>Built to handle curious hands and everyday bathroom life.</p></div>
-        </li>
+      <span class="section-label" style="text-align:left">A Closer Look</span>
+      <h2 class="section-title" style="text-align:left">Built for Little Hands</h2>
+      <ul class="callout-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/></svg>Large, pressable button sized for small hands</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 6v6c0 5 4 8.5 9 10 5-1.5 9-5 9-10V6l-9-4Z"/></svg>Bright, kid-friendly design</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Plays 30–60 seconds of music</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4Z"/><path d="M19 5a15 15 0 0 1 0 14M15.5 8.5a9 9 0 0 1 0 7"/></svg>Built-in speaker</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>On/off switch</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M10 6h4"/></svg>Battery compartment</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>Compact, toilet-tank size</li>
       </ul>
+      <p class="dims-note">Approximate overall diameter: <span data-field="dimensions.overallDiameterMm"></span> mm &middot; Top button diameter: approximately <span data-field="dimensions.buttonDiameterMm"></span> mm &middot; Approximate total height: <span data-field="dimensions.heightMm"></span> mm. <span data-field="dimensions.note"></span></p>
     </div>
   </div>
 </section>
 
-<section class="why" id="why">
+<section class="routine" aria-label="The complete potty time routine">
   <div class="wrap">
-    <span class="eyebrow-sm" style="color:#ffd400">Parent Approved</span>
-    <h2 class="section-title">Why Parents Love It</h2>
-    <p class="section-sub">A simple tool that makes a big difference in your bathroom routine.</p>
-    <div class="why-grid">
-      <div class="why-item"><div class="check">✓</div><p>Helps create bathroom routines</p></div>
-      <div class="why-item"><div class="check">✓</div><p>Encourages independence</p></div>
-      <div class="why-item"><div class="check">✓</div><p>Makes potty time fun</p></div>
-      <div class="why-item"><div class="check">✓</div><p>Helps limit extra-long bathroom visits</p></div>
-      <div class="why-item"><div class="check">✓</div><p>Easy to use, no setup needed</p></div>
-      <div class="why-item"><div class="check">✓</div><p>Great for toddlers ages 3 and up</p></div>
+    <span class="section-label" style="color:var(--yellow)">The Full Picture</span>
+    <h2 class="section-title">The Potty Time Routine</h2>
+    <p class="section-sub">A simple sequence children can learn and repeat every time.</p>
+    <div class="routine-row">
+      <div class="routine-step"><div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/></svg></div><span>Press</span></div>
+      <div class="routine-arrow">&rarr;</div>
+      <div class="routine-step"><div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><span>Potty</span></div>
+      <div class="routine-arrow">&rarr;</div>
+      <div class="routine-step"><div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M8 7V4h8v3M6 7l1 13h10l1-13"/></svg></div><span>Wipe</span></div>
+      <div class="routine-arrow">&rarr;</div>
+      <div class="routine-step"><div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h12l-2-3M15 12l-2 3"/><circle cx="19" cy="12" r="2"/></svg></div><span>Flush</span></div>
+      <div class="routine-arrow">&rarr;</div>
+      <div class="routine-step"><div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12v-1a5 5 0 0 1 10 0v1"/><path d="M5 12h14l-1.2 7.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8Z"/></svg></div><span>Wash</span></div>
+      <div class="routine-arrow">&rarr;</div>
+      <div class="routine-step"><div class="circle"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></div><span>Go Play</span></div>
     </div>
   </div>
 </section>
 
-<section class="faq" id="faq">
+<section class="reviews" id="reviews" aria-label="Reviews">
   <div class="wrap">
-    <span class="eyebrow-sm">Questions</span>
+    <span class="section-label">Parent Feedback</span>
+    <h2 class="section-title">Parents Are Singing Its Praises</h2>
+    <div class="reviews-note-wrap"><span class="reviews-note">Sample reviews shown for preview purposes — to be replaced with real customer reviews before launch</span></div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="review-stars" aria-hidden="true">★★★★★</div>
+        <p>“My child loves pressing the button, and it gives us a routine we can repeat every time.”</p>
+        <div class="reviewer">Sample review</div>
+        <div class="review-placeholder-tag">Placeholder — not a verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars" aria-hidden="true">★★★★★</div>
+        <p>“Simple, fun, and much easier than constantly reminding them to finish up.”</p>
+        <div class="reviewer">Sample review</div>
+        <div class="review-placeholder-tag">Placeholder — not a verified review</div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars" aria-hidden="true">★★★★★</div>
+        <p>“The song makes potty time feel like a game instead of a struggle.”</p>
+        <div class="reviewer">Sample review</div>
+        <div class="review-placeholder-tag">Placeholder — not a verified review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="purchase" id="purchase" aria-label="Purchase Time to Potty">
+  <div class="wrap">
+    <span class="section-label">Get Yours</span>
+    <h2 class="section-title">Make Potty Time More Fun Today</h2>
+    <div class="purchase-card">
+      <img src="time-to-potty-product-front.jpg" alt="Time to Potty music button, front three-quarter product view" loading="lazy" width="900" height="900">
+      <div>
+        <h3 style="font-size:1.5rem;" data-field="name">Time to Potty Music Button</h3>
+        <div class="price-row">
+          <span class="price-now" data-price>$24.99</span>
+        </div>
+        <p style="color:var(--muted);font-weight:600;font-size:.9rem;">Price shown is a placeholder and subject to change before launch.</p>
+        <div class="qty-row">
+          <label for="qtyInput" style="font-weight:800;">Quantity</label>
+          <div class="qty-control">
+            <button type="button" id="qtyMinus" aria-label="Decrease quantity">−</button>
+            <input type="number" id="qtyInput" value="1" min="1" max="10" aria-label="Quantity">
+            <button type="button" id="qtyPlus" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+        <button type="button" id="addToCartBtn" class="btn block">Add to Cart</button>
+        <p id="addCartFeedback" class="add-cart-feedback">Added to cart! (Demo only — checkout is not yet connected.)</p>
+        <ul class="purchase-bullets">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Plays 30–60 seconds of music</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>Simple one-button operation</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/></svg>No app required</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/></svg>Designed for children</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>Compact and portable</li>
+        </ul>
+        <div class="purchase-notes">
+          <span data-field="shipping"></span>
+          <span data-field="returns"></span>
+        </div>
+        <div class="payment-icons">
+          <span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>PayPal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq" aria-label="Frequently asked questions">
+  <div class="wrap">
+    <span class="section-label">Questions</span>
     <h2 class="section-title">Frequently Asked Questions</h2>
-    <p class="section-sub">Everything you need to know before launch.</p>
     <div class="faq-list">
-      <details class="faq-item">
-        <summary>When will Time To Potty be available?</summary>
-        <p>We're putting the finishing touches on production. Join the waitlist and we'll email our list first as soon as a launch date is confirmed.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What age is it recommended for?</summary>
-        <p>Time To Potty is designed for toddlers ages 3 and up.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What batteries does it use?</summary>
-        <p>It includes 2x AAA batteries, so it's ready to use right out of the box.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Can my toddler use it on their own?</summary>
-        <p>Yes! One big button starts the countdown, sounds, and lights automatically — no help needed.</p>
-      </details>
-      <details class="faq-item">
-        <summary>How will I know when it launches?</summary>
-        <p>Join the waitlist above with your email and you'll be the first to hear from us, with no spam.</p>
-      </details>
+      <details class="faq-item"><summary>What is Time to Potty?</summary><p>Time to Potty is a simple music button that plays a short song to make bathroom routines more fun and predictable for children.</p></details>
+      <details class="faq-item"><summary>How long does the music play?</summary><p>The music plays for approximately 30–60 seconds, depending on the final product version.</p></details>
+      <details class="faq-item"><summary>What ages is it designed for?</summary><p>It is primarily designed for toddlers and young children who are learning bathroom routines.</p></details>
+      <details class="faq-item"><summary>Does it require an app?</summary><p>No. It works without an app, phone, Wi-Fi, or Bluetooth.</p></details>
+      <details class="faq-item"><summary>Where does it go?</summary><p>It is designed to sit on the toilet tank or another nearby clean, dry, stable surface.</p></details>
+      <details class="faq-item"><summary>Is it waterproof?</summary><p data-field="waterproofNote"></p></details>
+      <details class="faq-item"><summary>Does it guarantee potty-training success?</summary><p>No. It is a routine-support product designed to make potty time more engaging. Every child develops at a different pace.</p></details>
+      <details class="faq-item"><summary>Are batteries included?</summary><p data-field="batteries"></p></details>
     </div>
   </div>
 </section>
 
-<section class="cta-banner">
+<section class="final-cta" aria-label="Call to action">
   <div class="wrap">
-    <h2>Don't Miss the Launch</h2>
-    <p>Join the waitlist to get early access and a launch-day surprise.</p>
-    <form class="waitlist-form" id="waitlistForm2">
-      <input type="email" placeholder="Enter your email" required>
-      <button type="submit" class="btn">Notify Me</button>
-    </form>
-    <p class="form-note" id="formNote2">🎉 You're on the list! We'll email you the moment we launch.</p>
+    <h2>Ready to Make Potty Time More Fun?</h2>
+    <p>One button. One song. One simple routine.</p>
+    <a href="#purchase" id="cta-shop-final" class="btn">Shop Time to Potty</a>
   </div>
 </section>
+</main>
 
-<footer>
+<div class="sticky-cart" id="stickyCart">
+  <span class="price-now" data-price>$24.99</span>
+  <button type="button" id="stickyAddToCartBtn" class="btn" style="flex:1;">Add to Cart</button>
+</div>
+
+<footer class="site">
   <div class="wrap">
     <div class="footer-grid">
-      <div>
-        <div class="footer-brand">
-          <img src="logo-badge.png" alt="Time To Potty logo">
-          <span>TIME TO POTTY</span>
-        </div>
-        <p style="color:#a9c1e8;font-size:.9rem;max-width:300px;">Making potty training something kids actually look forward to.</p>
-        <div class="footer-badges">
-          <span>3+ Years</span>
-          <span>2x AAA Batteries Included</span>
-          <span>Easy to Use</span>
-        </div>
-        <div class="social">
-          <a href="https://www.tiktok.com/@timetopotty" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 1.9 1.6 3.4 3.5 3.7v2.6c-1.3.1-2.5-.3-3.5-1v6.9c0 3-2.4 5.3-5.4 5.3S5.7 18.2 5.7 15.2c0-3 2.4-5.3 5.4-5.3.4 0 .8 0 1.1.1v2.7c-.3-.1-.7-.2-1.1-.2-1.5 0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7 2.8-1.1 2.8-2.7V3h2.6Z"/></svg></a>
-          <a href="https://www.instagram.com/timetopotty" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-          <a href="https://www.facebook.com/timetopotty" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.3l.4-2.7h-2.7V9.4c0-.8.2-1.3 1.4-1.3h1.4V5.6c-.7-.1-1.5-.2-2.3-.2-2.3 0-3.8 1.4-3.8 3.9v2h-2.3v2.7h2.3v7h3.3Z"/></svg></a>
+      <div class="footer-brand">
+        <div class="logo"><img src="logo-badge.png" alt="Time to Potty logo"> TIME TO POTTY</div>
+        <p>Make bathroom routines more fun with a simple, one-button music timer designed for kids.</p>
+        <div class="footer-social">
+          <a href="https://tiktok.com/@timetopotty" aria-label="Time to Potty on TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8.5a5.5 5.5 0 0 1-4-4.7V15a4 4 0 1 1-3-3.87"/></svg></a>
+          <a href="https://instagram.com/timetopotty" aria-label="Time to Potty on Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="https://facebook.com/timetopotty" aria-label="Time to Potty on Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"/></svg></a>
         </div>
       </div>
       <div class="footer-col">
-        <h4>Explore</h4>
+        <h4>Shop</h4>
         <ul>
-          <li><a href="#how">How It Works</a></li>
-          <li><a href="#spotlight">Features</a></li>
-          <li><a href="#why">Why Parents Love It</a></li>
+          <li><a href="#purchase">Shop Now</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Get In Touch</h4>
+        <h4>Support</h4>
         <ul>
-          <li><a href="#waitlist">Join the Waitlist</a></li>
-          <li><a href="https://www.instagram.com/timetopotty">Instagram</a></li>
-          <li><a href="https://www.tiktok.com/@timetopotty">TikTok</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#shipping">Shipping</a></li>
+          <li><a href="#returns">Returns</a></li>
+          <li><a href="#privacy">Privacy Policy</a></li>
+          <li><a href="#terms">Terms</a></li>
         </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Join the Potty Party</h4>
+        <p style="color:#9fbcd8;font-size:.85rem;">Get product updates, parenting tips, and special offers.</p>
+        <form id="footerSignupForm" class="signup-form">
+          <label for="footerEmail" class="visually-hidden">Email address</label>
+          <input type="email" id="footerEmail" placeholder="Enter your email" required>
+          <button type="submit" class="btn yellow" style="padding:12px 20px;font-size:.85rem;">Join</button>
+        </form>
+        <p id="footerSignupNote" style="display:none;color:var(--yellow);font-weight:800;margin-top:10px;">You’re on the list! (Demo only — email signup is not yet connected to a mailing list.)</p>
       </div>
     </div>
     <div class="footer-bottom">
-      &copy; 2026 Time To Potty. All rights reserved.
+      <span>&copy; 2026 Time to Potty. All rights reserved.</span>
+      <span>Made for parents who want potty time to be a little more fun.</span>
     </div>
   </div>
 </footer>
-
-<script>
-  const toggle = document.getElementById('menuToggle');
-  const mobileNav = document.getElementById('mobileNav');
-  toggle.addEventListener('click', () => mobileNav.classList.toggle('open'));
-  document.querySelectorAll('.mobile-nav a').forEach(link => {
-    link.addEventListener('click', () => mobileNav.classList.remove('open'));
-  });
-
-  // NOTE: These waitlist forms are front-end only for now.
-  // Connect a real email service (Mailchimp, ConvertKit, Formspree, etc.)
-  // to an action/endpoint here before launch so signups are actually captured.
-  function wireWaitlistForm(formId, noteId) {
-    const form = document.getElementById(formId);
-    const note = document.getElementById(noteId);
-    if (!form) return;
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      form.style.display = 'none';
-      note.style.display = 'block';
-    });
-  }
-  wireWaitlistForm('waitlistForm', 'formNote');
-  wireWaitlistForm('waitlistForm2', 'formNote2');
-</script>
-
 </body>
 </html>
