@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time To Potty | Make Potty Time Fun!</title>
+<meta name="description" content="Time To Potty is a fun potty timer button with sounds, lights, and countdowns that turns potty training into a game kids love.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1857a4;
+    --blue-dark:#123f7a;
+    --yellow:#ffd400;
+    --red:#e8332a;
+    --cream:#fff8e6;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Nunito', sans-serif;
+    color:var(--blue-dark);
+    background:var(--cream);
+    line-height:1.5;
+  }
+  h1,h2,h3{font-family:'Baloo 2', cursive;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;}
+  .wrap{max-width:1100px;margin:0 auto;padding:0 24px;}
+  .btn{
+    display:inline-block;
+    background:var(--red);
+    color:var(--white);
+    font-family:'Baloo 2', cursive;
+    font-weight:700;
+    font-size:1.1rem;
+    padding:16px 36px;
+    border-radius:50px;
+    box-shadow:0 6px 0 #a8231c;
+    border:none;
+    cursor:pointer;
+    transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn.secondary{
+    background:var(--yellow);
+    color:var(--blue-dark);
+    box-shadow:0 6px 0 #c9a600;
+  }
+
+  /* NAV */
+  header.site{
+    background:var(--blue);
+    padding:14px 0;
+    position:sticky;
+    top:0;
+    z-index:50;
+    box-shadow:0 2px 10px rgba(0,0,0,.15);
+  }
+  header.site .wrap{display:flex;align-items:center;justify-content:space-between;}
+  .logo{display:flex;align-items:center;gap:10px;}
+  .logo img{width:48px;height:48px;border-radius:50%;}
+  .logo span{color:var(--yellow);font-family:'Baloo 2';font-weight:800;font-size:1.3rem;}
+  nav ul{display:flex;gap:28px;list-style:none;}
+  nav a{color:var(--white);font-weight:700;}
+  nav a:hover{color:var(--yellow);}
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(180deg, var(--blue) 0%, #2467c4 100%);
+    color:var(--white);
+    padding:70px 0 90px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero h1{
+    font-size:3.2rem;
+    color:var(--yellow);
+    -webkit-text-stroke:2px var(--blue-dark);
+    line-height:1.1;
+  }
+  .hero p.tag{
+    font-size:1.3rem;
+    margin:18px auto 30px;
+    max-width:560px;
+    font-weight:700;
+  }
+  .hero .badge{
+    width:220px;
+    margin:0 auto 30px;
+    border-radius:50%;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  .hero .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  /* SECTION HEADERS */
+  .section-title{
+    text-align:center;
+    font-size:2.2rem;
+    color:var(--blue);
+    margin-bottom:12px;
+  }
+  .section-sub{
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 40px;
+    font-weight:600;
+    color:#555;
+  }
+
+  /* HOW IT WORKS */
+  .how{padding:80px 0;background:var(--white);}
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .step{
+    background:var(--cream);
+    border-radius:20px;
+    padding:26px 18px;
+    text-align:center;
+    border:3px solid #ffe27a;
+  }
+  .step .num{
+    width:42px;height:42px;border-radius:50%;
+    background:var(--blue);color:var(--white);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;margin:0 auto 14px;font-family:'Baloo 2';
+  }
+  .step .emoji{font-size:2.4rem;margin-bottom:10px;}
+  .step h3{font-size:1.1rem;margin-bottom:6px;color:var(--blue-dark);}
+  .step p{font-size:.92rem;color:#555;}
+
+  /* WHY PARENTS LOVE IT */
+  .why{padding:80px 0;background:var(--blue);color:var(--white);}
+  .why .section-title{color:var(--yellow);}
+  .why .section-sub{color:#dbe8ff;}
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .why-item{
+    background:rgba(255,255,255,.08);
+    border:2px solid rgba(255,255,255,.25);
+    border-radius:16px;
+    padding:22px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .why-item .check{
+    background:var(--yellow);
+    color:var(--blue-dark);
+    border-radius:50%;
+    width:28px;height:28px;
+    flex:none;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;
+  }
+  .why-item p{font-weight:700;}
+
+  /* STORY / FEATURES */
+  .story{padding:80px 0;background:var(--cream);}
+  .story-flow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:24px;
+    flex-wrap:wrap;
+    margin-bottom:50px;
+  }
+  .story-flow .item{
+    text-align:center;
+    font-weight:700;
+  }
+  .story-flow .item .circle{
+    width:110px;height:110px;
+    border-radius:50%;
+    background:var(--white);
+    border:4px solid var(--blue);
+    display:flex;align-items:center;justify-content:center;
+    font-size:2.6rem;
+    margin:0 auto 10px;
+  }
+  .story-flow .arrow{font-size:2rem;color:var(--blue);}
+  .features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  .feature-card{
+    background:var(--white);
+    border-radius:16px;
+    padding:24px;
+    text-align:center;
+    box-shadow:0 4px 14px rgba(0,0,0,.06);
+  }
+  .feature-card .emoji{font-size:2rem;margin-bottom:10px;}
+  .feature-card h3{font-size:1rem;color:var(--blue-dark);}
+
+  /* CTA BANNER */
+  .cta-banner{
+    background:var(--yellow);
+    padding:60px 0;
+    text-align:center;
+  }
+  .cta-banner h2{font-size:2rem;color:var(--blue-dark);margin-bottom:14px;}
+  .cta-banner p{font-weight:700;margin-bottom:24px;color:#5a4b00;}
+  .coming-soon-badge{
+    display:inline-block;
+    background:var(--blue);
+    color:var(--white);
+    font-family:'Baloo 2';
+    font-weight:700;
+    padding:16px 40px;
+    border-radius:50px;
+    font-size:1.2rem;
+    box-shadow:0 6px 0 var(--blue-dark);
+  }
+
+  /* FOOTER */
+  footer{
+    background:var(--blue-dark);
+    color:#cfe0ff;
+    padding:50px 0 24px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:24px;
+    margin-bottom:30px;
+  }
+  .footer-badges{display:flex;gap:14px;flex-wrap:wrap;}
+  .footer-badges span{
+    background:rgba(255,255,255,.08);
+    padding:8px 14px;
+    border-radius:30px;
+    font-size:.85rem;
+    font-weight:700;
+  }
+  .social{display:flex;gap:16px;}
+  .social a{
+    color:var(--white);
+    background:rgba(255,255,255,.1);
+    width:38px;height:38px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-weight:800;
+  }
+  .footer-bottom{
+    text-align:center;
+    font-size:.85rem;
+    color:#8fa8d6;
+    border-top:1px solid rgba(255,255,255,.1);
+    padding-top:20px;
+  }
+
+  @media (max-width:900px){
+    .steps{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:1fr 1fr;}
+    .features{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:600px){
+    .hero h1{font-size:2.2rem;}
+    .steps{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .features{grid-template-columns:1fr;}
+    nav ul{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap">
+    <div class="logo">
+      <img src="images/logo-badge.png" alt="Time To Potty logo">
+      <span>TIME TO POTTY</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#why">Why Parents Love It</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#buy">Get Yours</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <img class="badge" src="images/logo-badge.png" alt="Time To Potty mascot badge">
+    <h1>TIME TO POTTY</h1>
+    <p class="tag">The fun potty timer button with lights, sounds, and countdowns kids actually love pressing!</p>
+    <div class="cta-row">
+      <a href="#buy" class="btn">Coming Soon</a>
+      <a href="#how" class="btn secondary">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-sub">Four simple steps turn potty time into a game.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div class="emoji">👉</div>
+        <h3>Press the Button</h3>
+        <p>Kids press the big friendly button themselves.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div class="emoji">⏱️</div>
+        <h3>Timer Starts</h3>
+        <p>A countdown begins so they know just how long to sit.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div class="emoji">🎵</div>
+        <h3>Fun Sounds &amp; Lights</h3>
+        <p>Cheerful sounds and lights keep them entertained.</p>
+      </div>
+      <div class="step">
+        <div class="num">4</div>
+        <div class="emoji">🌟</div>
+        <h3>Time's Up, Great Job!</h3>
+        <p>A celebration sound rewards a job well done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap">
+    <h2 class="section-title">Why Parents Love It</h2>
+    <p class="section-sub">A simple tool that makes a big difference in your bathroom routine.</p>
+    <div class="why-grid">
+      <div class="why-item"><div class="check">✓</div><p>Helps create bathroom routines</p></div>
+      <div class="why-item"><div class="check">✓</div><p>Encourages independence</p></div>
+      <div class="why-item"><div class="check">✓</div><p>Makes potty time fun</p></div>
+      <div class="why-item"><div class="check">✓</div><p>Helps limit extra-long bathroom visits</p></div>
+      <div class="why-item"><div class="check">✓</div><p>Easy to use, no setup needed</p></div>
+      <div class="why-item"><div class="check">✓</div><p>Great for toddlers ages 3 and up</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="features">
+  <div class="wrap">
+    <h2 class="section-title">Potty Time Just Got More Fun!</h2>
+    <p class="section-sub">Time To Potty turns bathroom routines into a fun challenge with lights, sounds, and countdowns kids love.</p>
+    <div class="story-flow">
+      <div class="item"><div class="circle">🧒</div>Sit Down</div>
+      <div class="arrow">➜</div>
+      <div class="item"><div class="circle">🔵</div>Press Go</div>
+      <div class="arrow">➜</div>
+      <div class="item"><div class="circle">⭐</div>You Did It!</div>
+    </div>
+    <div class="features">
+      <div class="feature-card"><div class="emoji">🔊</div><h3>Fun Sounds</h3></div>
+      <div class="feature-card"><div class="emoji">⏲️</div><h3>Countdown Timer</h3></div>
+      <div class="feature-card"><div class="emoji">⭐</div><h3>Encourages Good Habits</h3></div>
+      <div class="feature-card"><div class="emoji">😊</div><h3>Great for Potty Training</h3></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner" id="buy">
+  <div class="wrap">
+    <h2>Get Your Time To Potty Button</h2>
+    <p>Ages 3+ &middot; Includes 2x AAA batteries &middot; Easy to use</p>
+    <span class="coming-soon-badge">Coming Soon!</span>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-badges">
+        <span>3+ Years</span>
+        <span>2x AAA Batteries Included</span>
+        <span>Easy to Use</span>
+      </div>
+      <div class="social">
+        <a href="https://www.tiktok.com/@timetopotty" aria-label="TikTok">TT</a>
+        <a href="https://www.instagram.com/timetopotty" aria-label="Instagram">IG</a>
+        <a href="https://www.facebook.com/timetopotty" aria-label="Facebook">FB</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2026 Time To Potty. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
