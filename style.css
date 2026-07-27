@@ -91,6 +91,9 @@ nav.desktop-nav a:hover{color:var(--blue);border-color:var(--yellow);}
 .step-num{width:36px;height:36px;border-radius:50%;background:var(--blue);color:#fff;font-family:'Baloo 2';font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
 .step-icon{width:60px;height:60px;border-radius:50%;background:var(--light-blue);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
 .step-icon svg{width:28px;height:28px;stroke:var(--blue);}
+.step-card-photo{padding-top:0;overflow:hidden;position:relative;}
+.step-photo{width:calc(100% + 52px);margin:0 -26px 18px;display:block;height:210px;object-fit:cover;object-position:center 22%;border-radius:20px 20px 0 0;}
+.step-card-photo .step-num{position:absolute;top:14px;left:14px;margin:0;box-shadow:0 4px 10px rgba(0,0,0,.3);z-index:2;}
 .step-card h3{font-size:1.15rem;margin-bottom:10px;}
 .step-card p{color:var(--muted);font-size:.94rem;font-weight:600;}
 
