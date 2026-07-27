@@ -107,9 +107,9 @@ nav.desktop-nav a:hover{color:var(--blue);border-color:var(--yellow);}
 
 /* LIFESTYLE BANNER */
 .lifestyle{position:relative;padding:0;}
-.lifestyle-media{position:relative;min-height:560px;display:flex;align-items:center;}
+.lifestyle-media{position:relative;aspect-ratio:1.9;display:flex;align-items:center;}
 .lifestyle-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;}
-.lifestyle-overlay{position:relative;z-index:2;background:rgba(7,85,155,.72);color:#fff;padding:50px 44px;border-radius:var(--radius);max-width:460px;margin-left:6%;}
+.lifestyle-overlay{position:relative;z-index:2;background:rgba(7,85,155,.72);color:#fff;padding:50px 44px;border-radius:var(--radius);max-width:min(420px,30%);margin-left:6%;}
 .lifestyle-overlay h2{color:#fff;font-size:2rem;margin-bottom:14px;}
 .lifestyle-overlay p{font-weight:600;margin-bottom:26px;}
 
@@ -225,7 +225,7 @@ footer.site{background:#0b2d4d;color:#cfe3f7;padding:70px 0 30px;}
   .footer-grid{grid-template-columns:1fr 1fr;}
   .routine-row{flex-direction:column;}
   .routine-arrow{transform:rotate(90deg);}
-  .lifestyle-media{display:flex;flex-direction:column;min-height:auto;}
+  .lifestyle-media{display:flex;flex-direction:column;min-height:auto;aspect-ratio:auto;}
   .lifestyle-media img{position:static;width:100%;height:auto;object-fit:cover;object-position:center;}
   .lifestyle-overlay{position:static;z-index:auto;background:var(--blue);max-width:none;margin:0;padding:34px 26px;border-radius:0;}
   .sticky-cart{display:flex;transform:translateY(110%);transition:transform .25s ease;}
