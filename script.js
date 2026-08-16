@@ -1,10 +1,15 @@
 /*
   TIME TO POTTY — site interactivity
-  NOTE: The cart and email signup below are FRONT-END ONLY.
-  There is no payment processor or email service connected yet.
-  Before launch, wire "Add to Cart" / checkout to a real commerce
-  platform (e.g. Shopify, Stripe Checkout) and connect the email
-  signup forms to a real ESP (e.g. Mailchimp, Klaviyo, Formspree).
+
+  NOTE: The email signup below is FRONT-END ONLY. There is no email service
+  connected yet. Before launch, connect the signup form to a real ESP
+  (e.g. Mailchimp, Klaviyo, Formspree) so pre-launch signups are actually
+  captured — this list is the single most valuable thing you can build
+  before the campaign goes live.
+
+  The shopping cart was removed. The site now points at Kickstarter, since
+  rewards do not ship until February 2027. To restore a store later, re-add
+  the cart markup and wire it to a real checkout (Shopify, Stripe Checkout).
 */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,73 +24,45 @@ document.addEventListener('DOMContentLoaded', () => {
         else el.textContent = val;
       }
     });
-    const priceEls = document.querySelectorAll('[data-price]');
-    priceEls.forEach(el => { el.textContent = '$' + PRODUCT_DATA.price.toFixed(2); });
+
+    document.querySelectorAll('[data-price]').forEach(el => {
+      el.textContent = '$' + PRODUCT_DATA.price.toFixed(2);
+    });
+
+    // Kickstarter links + pre-launch state
+    const ks = PRODUCT_DATA.kickstarter || {};
+    const ksLinks = document.querySelectorAll('[data-ks-link]');
+    const ksNote = document.getElementById('ksLiveNote');
+
+    ksLinks.forEach(el => {
+      if (ks.url) {
+        el.setAttribute('href', ks.url);
+        el.setAttribute('target', '_blank');
+        el.setAttribute('rel', 'noopener');
+      }
+      if (!ks.isLive) {
+        el.textContent = 'Get Notified When We Launch';
+      }
+    });
+
+    if (ksNote && ks.isLive) ksNote.style.display = 'none';
   }
 
   // Mobile nav toggle
   const toggle = document.getElementById('menuToggle');
   const mobileNav = document.getElementById('mobileNav');
   if (toggle && mobileNav) {
-    toggle.addEventListener('click', () => mobileNav.classList.toggle('open'));
-    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
-  }
-
-  // Cart state (front-end only, persisted locally for demo purposes)
-  const cartCountEls = document.querySelectorAll('.cart-count');
-  function getCartCount() { return parseInt(localStorage.getItem('ttp_cart_count') || '0', 10); }
-  function setCartCount(n) {
-    localStorage.setItem('ttp_cart_count', String(n));
-    cartCountEls.forEach(el => el.textContent = n);
-  }
-  setCartCount(getCartCount());
-
-  // Quantity selector
-  const qtyInput = document.getElementById('qtyInput');
-  const qtyMinus = document.getElementById('qtyMinus');
-  const qtyPlus = document.getElementById('qtyPlus');
-  if (qtyInput && qtyMinus && qtyPlus) {
-    qtyMinus.addEventListener('click', () => {
-      qtyInput.value = Math.max(1, parseInt(qtyInput.value || '1', 10) - 1);
+    toggle.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
     });
-    qtyPlus.addEventListener('click', () => {
-      qtyInput.value = Math.min(10, parseInt(qtyInput.value || '1', 10) + 1);
-    });
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }));
   }
 
-  // Add to cart (front-end only — no real checkout wired up yet)
-  function wireAddToCart(btnId, feedbackId) {
-    const btn = document.getElementById(btnId);
-    const feedback = feedbackId ? document.getElementById(feedbackId) : null;
-    if (!btn) return;
-    btn.addEventListener('click', () => {
-      const qty = qtyInput ? Math.max(1, parseInt(qtyInput.value || '1', 10)) : 1;
-      setCartCount(getCartCount() + qty);
-      if (feedback) {
-        feedback.style.display = 'block';
-        clearTimeout(feedback._t);
-        feedback._t = setTimeout(() => feedback.style.display = 'none', 3000);
-      }
-    });
-  }
-  wireAddToCart('addToCartBtn', 'addCartFeedback');
-  wireAddToCart('stickyAddToCartBtn', null);
-
-  // Sticky mobile add-to-cart bar: show once purchase section is in view on small screens
-  const purchaseSection = document.getElementById('purchase');
-  const stickyCart = document.getElementById('stickyCart');
-  if (purchaseSection && stickyCart) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (window.innerWidth <= 900) {
-          stickyCart.classList.toggle('show', entry.isIntersecting);
-        }
-      });
-    }, { threshold: 0.15 });
-    io.observe(purchaseSection);
-  }
-
-  // Email signup forms — FRONT-END ONLY, not yet connected to a real ESP
+  // Email signup — FRONT-END ONLY, not yet connected to a real ESP
   function wireSignupForm(formId, noteId) {
     const form = document.getElementById(formId);
     const note = document.getElementById(noteId);
