@@ -378,6 +378,28 @@
         <a href="#" class="btn block" id="cta-kickstarter-main" data-ks-link>Back Us on Kickstarter</a>
         <p class="ks-live-note" id="ksLiveNote">Our campaign is launching soon. Join the list below and we’ll email you the moment it goes live.</p>
 
+        <div class="reserve-block" id="reserveBlock">
+          <div class="reserve-or"><span>or</span></div>
+          <h4>Not on Kickstarter? Reserve one.</h4>
+          <p class="reserve-price"><strong data-price>$19.99</strong> <span>retail &middot; ships <span data-field="reserve.shipWindow"></span></span></p>
+          <form id="reserveForm" class="reserve-form" novalidate>
+            <label for="reserveName" class="visually-hidden">Your name</label>
+            <input type="text" id="reserveName" name="name" placeholder="Your name" autocomplete="name" required>
+            <label for="reserveEmail" class="visually-hidden">Email address</label>
+            <input type="email" id="reserveEmail" name="email" placeholder="Email address" autocomplete="email" required>
+            <label for="reserveQty" class="visually-hidden">How many</label>
+            <select id="reserveQty" name="quantity">
+              <option value="1">1 button</option>
+              <option value="2">2 buttons</option>
+              <option value="3">3 buttons</option>
+              <option value="4">4 or more</option>
+            </select>
+            <button type="submit" class="btn block secondary">Reserve Yours</button>
+          </form>
+          <p class="reserve-note" data-field="reserve.note"></p>
+          <p id="reserveThanks" class="reserve-thanks">Reserved — thank you. We’ll email you when yours is ready to ship. Nothing has been charged.</p>
+        </div>
+
         <ul class="purchase-bullets">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>Original songs preloaded</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1M12 18v4"/></svg>Record your own voice, up to 90 seconds</li>

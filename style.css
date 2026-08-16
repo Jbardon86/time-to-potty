@@ -320,3 +320,19 @@ footer.site{background:#0b2d4d;color:#cfe3f7;padding:70px 0 30px;}
   .voice-split{padding:22px;}
   .status-why{padding:24px 20px;}
 }
+
+/* RETAIL RESERVATION BLOCK (no payment taken) */
+.reserve-block{margin-top:26px;border-top:1px solid #eef1f5;padding-top:8px;}
+.reserve-or{position:relative;text-align:center;margin:0 0 18px;}
+.reserve-or::before{content:"";position:absolute;top:50%;left:0;right:0;height:1px;background:#eef1f5;}
+.reserve-or span{position:relative;background:#fff;padding:0 14px;font-weight:800;font-size:.78rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+.reserve-block h4{font-size:1.1rem;margin-bottom:6px;}
+.reserve-price{margin-bottom:14px;font-weight:700;font-size:.92rem;color:var(--muted);}
+.reserve-price strong{font-family:'Baloo 2',cursive;font-size:1.25rem;color:var(--blue);margin-right:6px;}
+.reserve-form{display:flex;flex-direction:column;gap:10px;}
+.reserve-form input,.reserve-form select{width:100%;padding:13px 16px;border:2px solid var(--light-blue);border-radius:12px;font-family:'Nunito',sans-serif;font-weight:600;font-size:.95rem;color:var(--ink);background:#fff;}
+.reserve-form input:focus,.reserve-form select:focus{outline:none;border-color:var(--blue);}
+.reserve-form input::placeholder{color:#9aa8b6;}
+.reserve-form .btn{margin-top:4px;}
+.reserve-note{margin-top:12px;font-size:.82rem;font-weight:600;color:var(--muted);line-height:1.5;}
+.reserve-thanks{display:none;margin-top:12px;font-weight:800;color:#1e8f4e;font-size:.95rem;}

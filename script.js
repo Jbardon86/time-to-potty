@@ -74,6 +74,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   wireSignupForm('footerSignupForm', 'footerSignupNote');
+
+  // Retail reservations. No payment is taken — this records intent only.
+  // If reserve.endpoint is set we POST to it. If not, we fall back to opening
+  // the visitor's email client so a reservation is never silently discarded.
+  (function wireReserve(){
+    const cfg = (typeof PRODUCT_DATA !== 'undefined' && PRODUCT_DATA.reserve) || null;
+    const block = document.getElementById('reserveBlock');
+    const form = document.getElementById('reserveForm');
+    const thanks = document.getElementById('reserveThanks');
+    if (!block || !form) return;
+    if (!cfg || !cfg.enabled) { block.style.display = 'none'; return; }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const qty = form.quantity.value;
+      if (!name || !email || !email.includes('@')) {
+        form.reportValidity();
+        return;
+      }
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
+      btn.textContent = 'Reserving…';
+
+      let ok = false;
+      if (cfg.endpoint) {
+        try {
+          const res = await fetch(cfg.endpoint, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, quantity: qty, product: 'Time to Potty Music Button', source: 'timetopotty.com reserve' })
+          });
+          ok = res.ok;
+        } catch (err) { ok = false; }
+      }
+
+      if (!ok) {
+        // No endpoint configured, or the POST failed — hand off to email so the
+        // reservation still reaches a human.
+        const to = cfg.fallbackEmail || '';
+        const subject = encodeURIComponent('Time to Potty reservation');
+        const body = encodeURIComponent(
+          'Name: ' + name + '\nEmail: ' + email + '\nQuantity: ' + qty +
+          '\n\nPlease reserve me a Time to Potty Music Button.'
+        );
+        window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + body;
+      }
+
+      form.style.display = 'none';
+      if (thanks) thanks.style.display = 'block';
+    });
+  })();
 });
 
 

@@ -54,6 +54,21 @@ const PRODUCT_DATA = {
     estimatedDelivery: "February 2027"
   },
 
+  // RETAIL RESERVATIONS (pre-orders, no charge taken)
+  // Nothing is charged at reserve time. Reserved units ship AFTER Kickstarter
+  // backer rewards, which keeps the campaign's "months before anyone else"
+  // promise true and avoids holding customer money for months.
+  reserve: {
+    enabled: true,
+    // Paste a form endpoint here (Formspree, Mailchimp, Klaviyo, Google Form).
+    // While this is empty the form falls back to opening the visitor's email
+    // client addressed to fallbackEmail, so no reservation is ever lost.
+    endpoint: "",
+    fallbackEmail: "ttopotty@gmail.com",
+    shipWindow: "Spring 2027",
+    note: "Nothing is charged today. We'll email you when reserved units are ready, and you pay then. Kickstarter backers ship first."
+  },
+
   shipping: "Backer rewards are estimated to ship February 2027. Shipping is calculated at the pledge stage on Kickstarter.",
   returns: "Kickstarter pledges are governed by Kickstarter's terms. Retail return policy will be published when the store opens.",
   warranty: "PLACEHOLDER: Confirm manufacturer warranty terms before launch.",
