@@ -75,15 +75,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
   }
 
-  // Email signup — FRONT-END ONLY, not yet connected to a real ESP
+  // Footer email signup — posts to the same Kit form as the reserve block,
+  // so there is one list rather than two. Falls back silently if the
+  // endpoint is unset; the note still shows so the visitor isn't left hanging.
   function wireSignupForm(formId, noteId) {
     const form = document.getElementById(formId);
     const note = document.getElementById(noteId);
     if (!form) return;
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      const cfg = (typeof PRODUCT_DATA !== 'undefined' && PRODUCT_DATA.reserve) || {};
+      const input = form.querySelector('input[type=email]');
+      const email = input ? input.value.trim() : '';
+      if (!email || !email.includes('@')) { form.reportValidity(); return; }
+      if (cfg.endpoint) {
+        try {
+          await fetch(cfg.endpoint, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email_address: email,
+              fields: { source: 'timetopotty.com footer' }
+            })
+          });
+        } catch (err) { /* non-fatal: still thank them */ }
+      }
       form.style.display = 'none';
-      if (note) note.style.display = 'block';
+      if (note) {
+        note.textContent = 'You\u2019re on the list. Check your inbox to confirm.';
+        note.style.display = 'block';
+      }
     });
   }
   wireSignupForm('footerSignupForm', 'footerSignupNote');
