@@ -60,10 +60,10 @@ const PRODUCT_DATA = {
   // promise true and avoids holding customer money for months.
   reserve: {
     enabled: true,
-    // Paste a form endpoint here (Formspree, Mailchimp, Klaviyo, Google Form).
-    // While this is empty the form falls back to opening the visitor's email
-    // client addressed to fallbackEmail, so no reservation is ever lost.
-    endpoint: "",
+    // Kit (ConvertKit) form endpoint. Payload must use Kit's field names —
+    // see the reserve handler in script.js. If this is ever cleared, the form
+    // falls back to opening the visitor's email client so nothing is lost.
+    endpoint: "https://app.kit.com/forms/9814789/subscriptions",
     fallbackEmail: "ttopotty@gmail.com",
     shipWindow: "Spring 2027",
     note: "Nothing is charged today. We'll email you when reserved units are ready, and you pay then. Kickstarter backers ship first."

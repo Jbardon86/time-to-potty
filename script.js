@@ -118,7 +118,16 @@ document.addEventListener('DOMContentLoaded', () => {
           const res = await fetch(cfg.endpoint, {
             method: 'POST',
             headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, quantity: qty, product: 'Time to Potty Music Button', source: 'timetopotty.com reserve' })
+            // Kit expects `email_address` plus a `fields` object. Sending
+            // {name, email} instead would be rejected outright.
+            body: JSON.stringify({
+              email_address: email,
+              fields: {
+                first_name: name,
+                quantity: qty,
+                source: 'timetopotty.com reserve'
+              }
+            })
           });
           ok = res.ok;
         } catch (err) { ok = false; }
