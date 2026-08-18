@@ -24,11 +24,11 @@ const PRODUCT_DATA = {
 
   ageRange: "Best for children ages 2–7",
 
-  // POWER — PLACEHOLDER: confirm cell type, count, and whether included.
-  // NOTE: if this ships with coin/button cells, US Reese's Law requires a
-  // secured battery compartment plus specific warning labelling. Confirm
-  // before launch and update this copy.
-  batteries: "PLACEHOLDER — confirm battery type, count, and whether batteries are included before launch.",
+  // POWER — AA cells, supplied by the customer.
+  // NOTE: Reese's Law governs button/coin cells only, so it does not apply
+  // to this product. If the cell type ever changes to coin cells, a secured
+  // compartment and specific warning labelling become mandatory.
+  batteries: "Time to Potty runs on AA batteries, which are not included. Pop them in, flip the switch on the back, and it's ready to use.",
 
   waterproof: false,
   waterproofNote: "Time to Potty is not waterproof, but it is built to be cleaned. The housing is a sealed shell with no fabric and no crevices to trap moisture, so it wipes down with a disinfecting wipe in about three seconds. Keep it out of direct water and away from splashes.",

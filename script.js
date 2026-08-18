@@ -35,13 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const ksNote = document.getElementById('ksLiveNote');
 
     ksLinks.forEach(el => {
-      if (ks.url) {
+      if (ks.isLive && ks.url) {
+        // Campaign is live: send people straight to Kickstarter.
         el.setAttribute('href', ks.url);
         el.setAttribute('target', '_blank');
         el.setAttribute('rel', 'noopener');
-      }
-      if (!ks.isLive) {
+      } else {
+        // Campaign is NOT live yet. An unlaunched Kickstarter project URL
+        // bounces logged-out visitors to a login screen, so never link out
+        // here. Send them to the reserve form on this page instead.
         el.textContent = 'Get Notified When We Launch';
+        el.setAttribute('href', '#reserveBlock');
+        el.removeAttribute('target');
+        el.removeAttribute('rel');
+        el.addEventListener('click', (e) => {
+          e.preventDefault();
+          const block = document.getElementById('reserveBlock');
+          const name = document.getElementById('reserveName');
+          if (block) block.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (name) setTimeout(() => name.focus({ preventScroll: true }), 450);
+        });
       }
     });
 
